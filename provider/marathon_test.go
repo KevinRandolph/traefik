@@ -5,8 +5,8 @@ import (
 	"testing"
 
 	"errors"
-	"github.com/containous/traefik/mocks"
-	"github.com/containous/traefik/types"
+	"github.com/KevinRandolph/traefik/mocks"
+	"github.com/KevinRandolph/traefik/types"
 	"github.com/gambol99/go-marathon"
 	"github.com/stretchr/testify/mock"
 )

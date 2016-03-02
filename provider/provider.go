@@ -7,8 +7,8 @@ import (
 	"text/template"
 
 	"github.com/BurntSushi/toml"
-	"github.com/containous/traefik/autogen"
-	"github.com/containous/traefik/types"
+	"github.com/KevinRandolph/traefik/autogen"
+	"github.com/KevinRandolph/traefik/types"
 )
 
 // Provider defines methods of a provider.

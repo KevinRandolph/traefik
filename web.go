@@ -6,9 +6,9 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/KevinRandolph/traefik/autogen"
+	"github.com/KevinRandolph/traefik/types"
 	log "github.com/Sirupsen/logrus"
-	"github.com/containous/traefik/autogen"
-	"github.com/containous/traefik/types"
 	"github.com/elazarl/go-bindata-assetfs"
 	"github.com/gorilla/mux"
 	"github.com/thoas/stats"

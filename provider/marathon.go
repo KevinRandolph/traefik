@@ -8,11 +8,12 @@ import (
 	"text/template"
 
 	"crypto/tls"
-	"github.com/BurntSushi/ty/fun"
-	log "github.com/Sirupsen/logrus"
-	"github.com/containous/traefik/types"
-	"github.com/gambol99/go-marathon"
 	"net/http"
+
+	"github.com/BurntSushi/ty/fun"
+	"github.com/KevinRandolph/traefik/types"
+	log "github.com/Sirupsen/logrus"
+	"github.com/gambol99/go-marathon"
 )
 
 // Marathon holds configuration of the Marathon provider.

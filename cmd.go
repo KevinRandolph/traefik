@@ -10,12 +10,13 @@ import (
 	"strings"
 	"time"
 
+	"net/http"
+
+	"github.com/KevinRandolph/traefik/middlewares"
+	"github.com/KevinRandolph/traefik/provider"
 	log "github.com/Sirupsen/logrus"
-	"github.com/containous/traefik/middlewares"
-	"github.com/containous/traefik/provider"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
-	"net/http"
 )
 
 var traefikCmd = &cobra.Command{

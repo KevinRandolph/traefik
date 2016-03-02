@@ -18,11 +18,11 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/KevinRandolph/traefik/middlewares"
+	"github.com/KevinRandolph/traefik/provider"
+	"github.com/KevinRandolph/traefik/types"
 	log "github.com/Sirupsen/logrus"
 	"github.com/codegangsta/negroni"
-	"github.com/containous/traefik/middlewares"
-	"github.com/containous/traefik/provider"
-	"github.com/containous/traefik/types"
 	"github.com/gorilla/mux"
 	"github.com/mailgun/manners"
 	"github.com/mailgun/oxy/cbreaker"
@@ -145,7 +145,8 @@ func (server *Server) listenConfigurations() {
 					server.currentConfigurations = newConfigurations
 					currentServerEntryPoint.httpRouter = newServerEntryPoint.httpRouter
 					oldServer := currentServerEntryPoint.httpServer
-					newsrv, err := server.prepareServer(currentServerEntryPoint.httpRouter, server.globalConfiguration.EntryPoints[newServerEntryPointName], oldServer, server.loggerMiddleware, metrics)
+					routersMiddleware := middlewares.NewRoutes(currentServerEntryPoint.httpRouter)
+					newsrv, err := server.prepareServer(currentServerEntryPoint.httpRouter, server.globalConfiguration.EntryPoints[newServerEntryPointName], oldServer, server.loggerMiddleware, routersMiddleware, metrics)
 					if err != nil {
 						log.Fatal("Error preparing server: ", err)
 					}
@@ -356,6 +357,7 @@ func (server *Server) loadConfig(configurations configs, globalConfiguration Glo
 						log.Debugf("Creating backend %s", frontend.Backend)
 						var lb http.Handler
 						rr, _ := roundrobin.New(fwd)
+						rr.KeepContext = true
 						if configuration.Backends[frontend.Backend] == nil {
 							return nil, errors.New("Undefined backend: " + frontend.Backend)
 						}
@@ -367,6 +369,7 @@ func (server *Server) loadConfig(configurations configs, globalConfiguration Glo
 						case types.Drr:
 							log.Debugf("Creating load-balancer drr")
 							rebalancer, _ := roundrobin.NewRebalancer(rr, roundrobin.RebalancerLogger(oxyLogger))
+							rebalancer.KeepContext = true
 							lb = rebalancer
 							for serverName, server := range configuration.Backends[frontend.Backend].Servers {
 								url, err := url.Parse(server.URL)
@@ -470,6 +473,7 @@ func (server *Server) buildDefaultHTTPRouter() *mux.Router {
 	router := mux.NewRouter()
 	router.NotFoundHandler = http.HandlerFunc(notFoundHandler)
 	router.StrictSlash(true)
+	router.KeepContext = true
 	return router
 }
 

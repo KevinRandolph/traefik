@@ -10,7 +10,7 @@ import (
 	"testing"
 	"text/template"
 
-	"github.com/containous/traefik/integration/utils"
+	"github.com/KevinRandolph/traefik/integration/utils"
 	"github.com/docker/libcompose/docker"
 	"github.com/docker/libcompose/project"
 

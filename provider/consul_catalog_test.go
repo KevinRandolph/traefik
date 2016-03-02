@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/containous/traefik/types"
+	"github.com/KevinRandolph/traefik/types"
 	"github.com/hashicorp/consul/api"
 )
 

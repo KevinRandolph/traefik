@@ -1,7 +1,7 @@
 package provider
 
 import (
-	"github.com/containous/traefik/types"
+	"github.com/KevinRandolph/traefik/types"
 	"github.com/docker/libkv/store"
 	"github.com/docker/libkv/store/etcd"
 )

@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/containous/traefik/types"
+	"github.com/KevinRandolph/traefik/types"
 	"github.com/fsouza/go-dockerclient"
 )
 

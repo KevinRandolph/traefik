@@ -11,7 +11,7 @@ import (
 	"github.com/BurntSushi/ty/fun"
 	log "github.com/Sirupsen/logrus"
 	"github.com/cenkalti/backoff"
-	"github.com/containous/traefik/types"
+	"github.com/KevinRandolph/traefik/types"
 	"github.com/fsouza/go-dockerclient"
 )
 
